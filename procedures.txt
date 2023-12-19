@@ -1,0 +1,2 @@
+docker pull debian:buster
+sudo docker run --name=debian d20e99fdc4dca6f853c234fbacb3402fc77653110b37717e4a61c7b233932975ddddddddddd
