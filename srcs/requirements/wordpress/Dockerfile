@@ -32,16 +32,16 @@ RUN chown -R www-data:www-data /var/www/wordpress
 
 COPY ./tools/install.sh /var/www/wordpress/install.sh
 COPY ./tools/wp-config.php /var/www/wordpress/wp-config.php
-COPY ./tools/exec.sh /var/www/wordpress/exec.sh
 COPY ./.env /
+COPY ./tools/exec.sh /
 
+RUN chmod +x /exec.sh
 RUN chmod +x /var/www/wordpress/wp-config.php
 RUN chmod +x /var/www/wordpress/install.sh
-RUN chmod +x /var/www/wordpress/exec.sh
 
 RUN bash -c /var/www/wordpress/install.sh
 RUN rm /var/www/wordpress/install.sh
 RUN rm /.env
 
-WORKDIR /var/www/wordpress
-ENTRYPOINT ["/bin/bash", "-c", "/var/www/wordpress/exec.sh"]
+WORKDIR /
+ENTRYPOINT ["/bin/bash", "-c", "/exec.sh"]

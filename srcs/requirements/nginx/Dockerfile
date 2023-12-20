@@ -7,11 +7,14 @@ RUN echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://n
 RUN apt-get update && apt-get -y install nginx && rm -rf /var/lib/apt/lists/*
 
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
+COPY ./tools/exec.sh /
 
+RUN chmod +x /exec.sh
 RUN openssl req -x509 -days 365 -nodes -newkey rsa:4096 \
 	-keyout /etc/ssl/private/mroy.42.fr.key \
 	-out /etc/ssl/certs/mroy.42.fr.crt -sha256 -subj "/CN=mroy.42.fr"
 
 EXPOSE 443
 
-CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /
+ENTRYPOINT ["/bin/bash", "-c", "/exec.sh"]
