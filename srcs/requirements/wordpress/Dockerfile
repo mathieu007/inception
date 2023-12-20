@@ -33,7 +33,7 @@ RUN chown -R www-data:www-data /var/www/wordpress
 COPY ./tools/install.sh /var/www/wordpress/install.sh
 COPY ./tools/wp-config.php /var/www/wordpress/wp-config.php
 COPY ./tools/exec.sh /var/www/wordpress/exec.sh
-COPY ./.env ./
+COPY ./.env /
 
 RUN chmod +x /var/www/wordpress/wp-config.php
 RUN chmod +x /var/www/wordpress/install.sh

@@ -8,7 +8,7 @@ RUN apt-get update -y \
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 COPY ./conf/my.cnf /etc/mysql/
 COPY ./tools/db_init.sh /
-COPY ./.env ./
+COPY ./.env /
 
 RUN chmod +x /db_init.sh
 RUN ./db_init.sh
