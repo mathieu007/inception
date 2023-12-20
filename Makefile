@@ -1,6 +1,9 @@
 all : up
-clean:
+
+fclean:
 	@docker-compose -f ./srcs/docker-compose.yml down -v && docker-compose -f ./srcs/docker-compose.yml down && docker-compose -f ./srcs/docker-compose.yml build --no-cache
+clean:
+	@docker-compose -f ./srcs/docker-compose.yml down -v && docker-compose -f ./srcs/docker-compose.yml down && docker-compose -f ./srcs/docker-compose.yml build
 up:
 	@docker-compose -f ./srcs/docker-compose.yml up -d
 re_maria:

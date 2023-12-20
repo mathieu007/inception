@@ -1,6 +1,9 @@
 #!/bin/bash
-set -x
 service mysql start
+
+if [ -f /.env ]; then
+  export $(cat /.env | xargs)
+fi
 
 # Create database
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`${DB_WP_NAME}\`;"

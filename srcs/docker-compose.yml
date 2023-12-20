@@ -39,10 +39,13 @@ services:
 
   wordpress:
     container_name: wordpress
-    build: ./requirements/wordpress
-    env_file: .env
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    env_file:
+      - .env
     volumes:
-      - wordpress:/var/www/html/wordpress
+      - wordpress:/var/www/wordpress
     networks:
       - inception
     depends_on:
@@ -52,12 +55,13 @@ services:
     container_name: nginx
     build: ./requirements/nginx
     hostname: localhost
-    env_file: .env
+    env_file:
+      - .env
     volumes:
-      - wordpress:/var/www/html/wordpress
+      - wordpress:/var/www/wordpress
     networks:
       - inception
     depends_on:
       - wordpress
     ports:
-      - "443:443"
+      - 443:443

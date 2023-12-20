@@ -1,0 +1,38 @@
+# Ignore system files
+.docker
+docker-compose.override.yml
+.dockerignore
+
+# Ignore development-specific files
+.env
+
+# Ignore generated files during build
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+*.log
+
+# Ignore Docker Compose override file, should you use it locally
+docker-compose.override.yml
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore temporary files and directories
+*.tmp
+*.swp
+*.swo
+*.swn
+*.swo
+*.swm
+*.swl
+*.swk
+*.swn
+*.swt
+

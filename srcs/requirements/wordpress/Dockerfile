@@ -19,7 +19,7 @@ RUN apt-get install -y \
 
 COPY ./conf/www.conf /etc/php/8.1/fpm/pool.d
 
-ADD https://wordpress.org/latest.tar.gz /var/www/html/latest.tar.gz
+ADD https://wordpress.org/latest.tar.gz /var/www/latest.tar.gz
 
 RUN cd /var/www && tar -xvf latest.tar.gz && \
 	rm -rf latest.tar.gz
@@ -27,15 +27,21 @@ RUN cd /var/www && tar -xvf latest.tar.gz && \
 RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar --output /usr/bin/wp --silent
 
 RUN chmod +x ./usr/bin/wp
-RUN mkdir /run/php
+RUN chmod 755 /var/www/wordpress
+RUN chown -R www-data:www-data /var/www/wordpress
 
-RUN chmod 755 /var/www/html/wordpress
-RUN chown -R www-data:www-data /var/www/html/wordpress
-COPY ./tools/install.sh /var/www/html/wordpress/install.sh
-COPY ./tools/wp-config.php /var/www/html/wordpress/wp-config.php
-RUN chmod +x /var/www/html/wordpress/wp-config.php
-RUN chmod +x /var/www/html/wordpress/install.sh
+COPY ./tools/install.sh /var/www/wordpress/install.sh
+COPY ./tools/wp-config.php /var/www/wordpress/wp-config.php
+COPY ./tools/exec.sh /var/www/wordpress/exec.sh
+COPY ./.env ./
 
-WORKDIR /var/www/html/wordpress
+RUN chmod +x /var/www/wordpress/wp-config.php
+RUN chmod +x /var/www/wordpress/install.sh
+RUN chmod +x /var/www/wordpress/exec.sh
 
-ENTRYPOINT ["bash", "./var/www/html/wordpress/install.sh"]
+RUN bash -c /var/www/wordpress/install.sh
+RUN rm /var/www/wordpress/install.sh
+RUN rm /.env
+
+WORKDIR /var/www/wordpress
+ENTRYPOINT ["/bin/bash", "-c", "/var/www/wordpress/exec.sh"]
