@@ -7,6 +7,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://n
 RUN apt-get update && apt-get -y install nginx && rm -rf /var/lib/apt/lists/*
 
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
+COPY ./conf/default.conf /etc/nginx/sites-available/default
 COPY ./tools/exec.sh /
 
 RUN chmod +x /exec.sh
@@ -16,5 +17,5 @@ RUN openssl req -x509 -days 365 -nodes -newkey rsa:4096 \
 
 EXPOSE 443
 
-WORKDIR /
-ENTRYPOINT ["/bin/bash", "-c", "/exec.sh"]
+CMD ["nginx", "-g", "daemon off;"]
+# ENTRYPOINT ["/bin/bash", "-c", "/exec.sh"]

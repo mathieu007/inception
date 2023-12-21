@@ -44,4 +44,5 @@ RUN rm /var/www/wordpress/install.sh
 RUN rm /.env
 
 WORKDIR /
+
 ENTRYPOINT ["/bin/bash", "-c", "/exec.sh"]
