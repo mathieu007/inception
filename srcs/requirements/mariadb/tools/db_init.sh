@@ -3,11 +3,6 @@
 set -x
 service mysql start
 
-sleep 10
-if [ -f /.env ]; then
-  export $(cat /.env | xargs)
-fi
-
 # Create database
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`${DB_WP_NAME}\`;"
 # Create user and grant privileges

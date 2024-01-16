@@ -16,6 +16,5 @@ RUN openssl req -x509 -days 365 -nodes -newkey rsa:4096 \
 	-out /etc/ssl/certs/mroy.42.fr.crt -sha256 -subj "/CN=mroy.42.fr"
 
 EXPOSE 443
-
 CMD ["nginx", "-g", "daemon off;"]
-# ENTRYPOINT ["/bin/bash", "-c", "/exec.sh"]
+

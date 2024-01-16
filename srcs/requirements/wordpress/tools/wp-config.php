@@ -20,16 +20,16 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', getenv('DB_WP_NAME'));
 
 /** Database username */
-define( 'DB_USER', 'math123456' );
+define( 'DB_USER', getenv('DB_WP_USER'));
 
 /** Database password */
-define( 'DB_PASSWORD', 'pass123456' );
+define( 'DB_PASSWORD', getenv('DB_WP_PASS'));
 
 /** Database hostname */
-define( 'DB_HOST', 'mariadb:3306');
+define( 'DB_HOST', getenv('DB_HOST') . ":" . getenv('DB_WP_PORT'));
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -48,14 +48,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         '/D*Ai:UH/M-4nZb):Atv40H2?BPyT2mmW/[E(Uc*M_}vf[;p*0(/ZaQ*v:k:nuy,UXWD%7bQaPj6a/AHqTk)p)_3Wy9eLPq_{4JD' );
-define( 'SECURE_AUTH_KEY',  'cc.m*0H[Y#[=F68M]z@u3ekFGaT40SuJ$_,0_m#QF$a621Ed6f1h4vS=ZTEVCjh{RkF}@b-B4{LZ&hNyy_,yY3;#Mf?aWL{Gf//U' );
-define( 'LOGGED_IN_KEY',    'z2iL}L{}q[dR%CTgg{YeTD32[?Y*f92(raJPd)Zu5&GbEbf[.+j9H*3jr$ue,%nZeM8yLwf&-Y+y.Wm{8*uGq6G3}Ya5t?+19MyN' );
-define( 'NONCE_KEY',        '9k/b!6{F-04V5!GnHLE20e1Vy%qXjH=(=y);#&Q:ck8qP)KAY23-GL5$!;]fnjEa8B}Byu2GnN5YYARXzC&gD[Zxb$DLdiHC+EHF' );
-define( 'AUTH_SALT',        '86wUrN3W=qW,C};*%SNN}y*c_t5eK?+W/Zfj&Y7j&W.0FS0H;i#v1%UQ5qW:1hVWi)([Ymg1i,9fehF6,vE{xR3P?$=b2Xdm3{Kq' );
-define( 'SECURE_AUTH_SALT', '*/g98j7jgR(@hDNxduF7Q/*hVm2hJ-.r4*WFbBF7aTkL;UC394J0Aq9]8z5Bwa=H@T]D?@N(/C0tNvQt0{xZASkS7B9WVc4*t{,(' );
-define( 'LOGGED_IN_SALT',   '9aC]Ze_UMvqjR02gjZ)4E8Me]3dQZ0LLB&]LXV[2)Brt!@6ZT3baSTR9x)e-5n&Jjg6zWQ#8B{vn=%Gh6KeuEeV#xQ6Uc-:ZN_C0' );
-define( 'NONCE_SALT',       ')zS%)jSX2MAb-eHzhtfR__%n}6LF5#z:.AfRDBC*(GaxN:uWZ#ME6neaSXJYkvz8w-,t#=yH7&.?ST/ZS{HK5]c}50uY*-GRBGd%' );
+define('AUTH_KEY',         'Sb-UCQ;!wvN/3Uc|U}Y%{3B|= ts=^&4g|Y9U{fWI3rOaF]#3D+ePk:9zRb-T|rw');
+define('SECURE_AUTH_KEY',  'yO@j:9M*8M7o@*LTRX`bh|!s04WZaIxI&ppM/1Iky`.&:F~J$b:;p4$L3PzaJ,.9');
+define('LOGGED_IN_KEY',    'vPH)q9ZX,|V9NjJ?KZACYR]JZ4R!i:F:OVu6%Z`hMZF:?F);3Q?7:|W^G|!)VL8S');
+define('NONCE_KEY',        'B6,rEsKz{YFZyNecvti+h-[ ,JFhb|1!{{qbq)bRF*bzfs>pt q1OghR/]3/Z:P+');
+define('AUTH_SALT',        'tnq//PNzwAMiUwpKY<o,0yS#7XRyZd]e+^B><b|H+w9k+gX%/n)*4,mQ5ln`/>ng');
+define('SECURE_AUTH_SALT', 'A(Zf)OLUjV|/!rpJX!}),<@pxF/5Xc`#T/FHX~P~edS!e,%t<,T|6x+_h}o--~2f');
+define('LOGGED_IN_SALT',   'eV#!CkwWBkyV/;kOfM*0wb`,=VD9jynuj7^%`oKhU6WwU+zBW$2d2PrRYiQD^M#-');
+define('NONCE_SALT',       '&+!nt V-b9Z,@i]zbH+i@VCB/?kejSGi2)#(dwVvvbWP4G&:nddVAx$K!>pDGon ');
 
 /**#@-*/
 
@@ -82,8 +82,6 @@ $table_prefix = 'wp_';
 define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
-
-
 
 /* That's all, stop editing! Happy publishing. */
 
