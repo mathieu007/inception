@@ -5,7 +5,8 @@ docker-compose.override.yml
 
 # Ignore development-specific files
 **/.env
-*.env
+.env
+
 
 # Ignore generated files during build
 *.pyc
