@@ -1,4 +1,4 @@
-DATA_DIR =  /home/${USER}/data
+DATA_DIR      =  /home/${USER}/data
 WORDPRESS_DIR =  $(DATA_DIR)/wordpress/
 MARIADB_DIR   =  $(DATA_DIR)/mariadb/
 
