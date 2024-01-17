@@ -1,7 +1,20 @@
 #!/bin/bash
 
 set -x
+
 service mysql start
+
+is_mysql_ready() {
+    mysqladmin ping &>/dev/null
+}
+
+# Poll MySQL readiness
+until is_mysql_ready; do
+    echo "Waiting for MySQL to be ready..."
+    sleep 1
+done
+
+echo "MySQL is ready. Executing other commands."
 
 # Create database
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`${DB_WP_NAME}\`;"

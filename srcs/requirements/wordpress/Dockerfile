@@ -53,11 +53,12 @@ COPY ./tools/install.sh /var/www/wordpress/install.sh
 COPY ./tools/wp-config.php /var/www/wordpress/wp-config.php
 COPY ./tools/exec.sh /
 
-RUN chmod +x /exec.sh
 RUN chmod +x /var/www/wordpress/wp-config.php
 RUN chmod +x /var/www/wordpress/install.sh
+RUN chmod +x /exec.sh
+
+RUN bash -c ./var/www/wordpress/install.sh > build.log
+RUN rm /var/www/wordpress/install.sh
 
 WORKDIR /
-RUN bash -c ./exec.sh
-
-ENTRYPOINT ["php-fpm8.1", "-F", "-R"]
+CMD ["/exec.sh"]

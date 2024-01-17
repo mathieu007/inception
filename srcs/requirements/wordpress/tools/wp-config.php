@@ -21,16 +21,20 @@
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', getenv('DB_WP_NAME'));
+echo getenv('DB_WP_NAME');
 
 /** Database username */
 define( 'DB_USER', getenv('DB_WP_USER'));
+echo getenv('DB_WP_USER');
 
 /** Database password */
 define( 'DB_PASSWORD', getenv('DB_WP_PASS'));
+echo getenv('DB_WP_PASS');
 
 /** Database hostname */
 define( 'DB_HOST', getenv('DB_HOST') . ":" . getenv('DB_WP_PORT'));
-
+echo getenv('DB_HOST');
+echo getenv('DB_WP_PORT');
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
 

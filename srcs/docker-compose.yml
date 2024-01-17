@@ -32,7 +32,7 @@ services:
         - DB_WP_USER=${DB_WP_USER}
         - DB_WP_PASS=${DB_WP_PASS}
         - DB_ROOT_PASS=${DB_ROOT_PASS}
-    image: mariadb:42
+    image: mariadb
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
@@ -48,7 +48,7 @@ services:
 
   wordpress:
     container_name: wordpress
-    image: wordpress:42
+    image: wordpress
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
@@ -81,7 +81,7 @@ services:
     restart: unless-stopped
 
   nginx:
-    image: nginx:42
+    image: nginx
     container_name: nginx
     build: ./requirements/nginx
     healthcheck:
@@ -94,10 +94,7 @@ services:
     volumes:
       - wordpress:/var/www/wordpress/
     networks:
-      - inception
-    depends_on:
-      - mariadb
-      - wordpress      
+      - inception 
     ports:
       - 443:443
     restart: unless-stopped

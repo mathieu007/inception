@@ -8,9 +8,7 @@ RUN apt-get update && apt-get -y install nginx && rm -rf /var/lib/apt/lists/*
 
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 COPY ./conf/default.conf /etc/nginx/sites-available/default
-COPY ./tools/exec.sh /
 
-RUN chmod +x /exec.sh
 RUN openssl req -x509 -days 365 -nodes -newkey rsa:4096 \
 	-keyout /etc/ssl/private/mroy.42.fr.key \
 	-out /etc/ssl/certs/mroy.42.fr.crt -sha256 -subj "/CN=mroy.42.fr"

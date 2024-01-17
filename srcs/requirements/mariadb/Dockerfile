@@ -24,9 +24,8 @@ COPY ./tools/db_init.sh /
 
 # RUN chmod +x /exec.sh
 RUN chmod +x /db_init.sh
-
 RUN ./db_init.sh
 RUN rm /db_init.sh
 
 # ENTRYPOINT ["/bin/bash", "-c", "/exec.sh"]
-CMD ["mysqld_safe", "--user=root"]
+CMD ["mysqld_safe"]
