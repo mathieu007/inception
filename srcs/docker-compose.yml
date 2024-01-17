@@ -94,7 +94,7 @@ services:
     volumes:
       - wordpress:/var/www/wordpress/
     networks:
-      - inception 
+      - inception
     ports:
       - 443:443
     restart: unless-stopped
