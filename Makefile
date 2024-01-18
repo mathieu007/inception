@@ -1,4 +1,4 @@
-DATA_DIR      =  /home/mroy/data
+DATA_DIR      =  /home/${USER}/data
 WORDPRESS_DIR =  $(DATA_DIR)/wordpress/
 MARIADB_DIR   =  $(DATA_DIR)/mariadb/
 
@@ -6,15 +6,15 @@ all: build
 
 build:
 	@if [ ! -d $(DATA_DIR) ]; then \
-        sudo mkdir -p $(DATA_DIR); \
+        mkdir $(DATA_DIR); \
         echo "Directory $(DATA_DIR) created."; \
     fi
 	@if [ ! -d $(WORDPRESS_DIR) ]; then \
-        sudo mkdir -p $(WORDPRESS_DIR); \
+        mkdir $(WORDPRESS_DIR); \
         echo "Directory $(WORDPRESS_DIR) created."; \
     fi
 	@if [ ! -d $(MARIADB_DIR) ]; then \
-        sudo mkdir -p $(MARIADB_DIR); \
+        mkdir $(MARIADB_DIR); \
         echo "Directory $(MARIADB_DIR) created."; \
     fi
 	docker compose -f ./srcs/docker-compose.yml up -d --build
@@ -54,4 +54,4 @@ clean:
 
 re: prune all
 
-.PHONY: all build up down start stop logs status prune   re
+.PHONY: all build up down start stop logs status prune re
