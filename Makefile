@@ -1,4 +1,4 @@
-DATA_DIR      =  /home/${USER}/data
+DATA_DIR      =  /home/mroy/data
 WORDPRESS_DIR =  $(DATA_DIR)/wordpress/
 MARIADB_DIR   =  $(DATA_DIR)/mariadb/
 
@@ -35,7 +35,7 @@ logs:
 	docker compose -f ./srcs/docker-compose.yml logs
 	
 status:
-	docker ps
+	docker ps -a
 
 prune: down
 	sudo rm -rf $(WORDPRESS_DIR)

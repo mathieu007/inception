@@ -1,7 +1,5 @@
 FROM debian:buster
 
-EXPOSE 9000
-
 ARG DOMAIN_NAME
 ARG WP_TITLE
 ARG WP_USER
@@ -49,16 +47,11 @@ RUN chmod +x ./usr/bin/wp
 RUN chmod 755 /var/www/wordpress
 RUN chown -R www-data:www-data /var/www/wordpress
 
-COPY ./tools/install.sh /var/www/wordpress/install.sh
 COPY ./tools/wp-config.php /var/www/wordpress/wp-config.php
 COPY ./tools/exec.sh /
 
 RUN chmod +x /var/www/wordpress/wp-config.php
-RUN chmod +x /var/www/wordpress/install.sh
 RUN chmod +x /exec.sh
-
-RUN bash -c ./var/www/wordpress/install.sh > build.log
-RUN rm /var/www/wordpress/install.sh
 
 WORKDIR /
 CMD ["/exec.sh"]
