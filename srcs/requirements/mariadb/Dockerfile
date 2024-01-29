@@ -15,17 +15,15 @@ RUN apt-get update -y && \
     apt-get install -y systemd && \
     apt-get install -y mariadb-server && \
     apt-get install -y procps && \
+    apt-get install -y curl && \
     apt-get clean
 
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 COPY ./conf/my.cnf /etc/mysql/
 COPY ./tools/db_init.sh /
-# COPY ./tools/exec.sh /
 
-# RUN chmod +x /exec.sh
 RUN chmod +x /db_init.sh
 RUN ./db_init.sh
 RUN rm /db_init.sh
 
-# ENTRYPOINT ["/bin/bash", "-c", "/exec.sh"]
 CMD ["mysqld_safe"]

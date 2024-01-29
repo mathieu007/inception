@@ -15,7 +15,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/mroy/data/mariadb/
+      device: /home/mroy/data/wordpress/
 
 networks:
   inception:
@@ -35,7 +35,7 @@ services:
         - DB_ROOT_PASS=${DB_ROOT_PASS}
     image: mariadb
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 5s
       timeout: 3s
       retries: 3
@@ -45,7 +45,7 @@ services:
       - .env
     networks:
       - inception
-    restart: unless-stopped
+    restart: always
 
   wordpress:
     container_name: wordpress
@@ -67,11 +67,11 @@ services:
         - WP_ADMIN_USER=${WP_ADMIN_USER}
         - WP_ADMIN_PWD=${WP_ADMIN_PWD}
         - WP_ADMIN_EMAIL=${WP_ADMIN_EMAIL}
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "https://mroy.42.fr/wp-admin/"]
-    #   interval: 5s
-    #   timeout: 3s
-    #   retries: 3
+    healthcheck:
+      test: ["CMD", "curl", "-k", "https://nginx:443"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
     env_file:
       - .env
     volumes:
@@ -80,7 +80,7 @@ services:
       - inception
     depends_on:
       - mariadb
-    restart: unless-stopped
+    restart: always
 
   nginx:
     image: nginx
@@ -90,11 +90,11 @@ services:
         - DOCKER_BUILDKIT=1
       context: ./requirements/nginx
       dockerfile: Dockerfile
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "https://mroy.42.fr/"]
-    #   interval: 5s
-    #   timeout: 3s
-    #   retries: 3
+    healthcheck:
+      test: [ "CMD", "curl", "-k", "https://mroy.42.fr/" ]
+      interval: 5s
+      timeout: 3s
+      retries: 3
     env_file:
       - .env
     volumes:
@@ -103,4 +103,4 @@ services:
       - inception
     ports:
       - 443:443
-    restart: unless-stopped
+    restart: always
