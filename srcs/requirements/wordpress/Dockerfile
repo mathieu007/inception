@@ -30,8 +30,8 @@ RUN apt-get install -y netcat
 RUN apt-get install -y mariadb-client
 RUN apt-get install -y php8.1-mysql php8.1-cli php8.1-common php8.1-imap php8.1-ldap php8.1-xml php8.1-fpm php8.1-curl php8.1-mbstring php8.1-zip php8.1-gd
 RUN apt-get install -y \
-	mariadb-client \
-	curl
+	mariadb-client -y \
+	curl -y
 # rm -rf /var/lib/apt/lists/*
 
 COPY ./conf/www.conf /etc/php/8.1/fpm/pool.d
@@ -40,7 +40,6 @@ RUN cd /var/www && tar -xvf latest.tar.gz && \
 	rm -rf latest.tar.gz
 
 RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar --output /usr/bin/wp --silent
-
 
 RUN chmod +x ./usr/bin/wp
 RUN chmod -R 755 /var/www/wordpress
