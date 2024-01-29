@@ -26,9 +26,9 @@ mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT O
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 # Create database SQL
-# echo "CREATE DATABASE IF NOT EXISTS \`${DB_WP_NAME}\`;" > database_setup.sql
+echo "Mariadb database and users created..."
 
-# # Create user and grant privileges SQL
+# Create user and grant privileges SQL
 # echo "CREATE USER '${DB_WP_USER}'@'%' IDENTIFIED BY '${DB_WP_PASS}';" >> database_setup.sql
 # echo "GRANT ALL PRIVILEGES ON \`${DB_WP_NAME}\`.* TO '${DB_WP_USER}'@'%';" >> database_setup.sql
 
