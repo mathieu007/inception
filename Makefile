@@ -67,6 +67,15 @@ mariadb:
 status:
 	docker ps -a
 
+debug:
+	sudo dockerd --debug
+
+restart:
+	sudo systemctl restart docker
+
+rootlesskit:
+	sudo setcap cap_net_bind_service=ep /usr/bin/rootlesskit
+
 # watch out, will delete all local data!!! use at yout own risk.
 prune: down rm_volumes rm_orphans
 	sudo rm -rf $(WORDPRESS_DIR)

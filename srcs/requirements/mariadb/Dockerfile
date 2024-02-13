@@ -19,7 +19,7 @@ RUN apt-get update -y && \
     apt-get clean
 
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
-COPY ./conf/my.cnf /etc/mysql/
+# COPY ./conf/my.cnf /etc/mysql/
 COPY ./tools/db_init.sh /
 
 RUN chmod +x /db_init.sh
